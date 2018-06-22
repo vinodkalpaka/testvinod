@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login Form Using jQuery - Demo Preview</title>
+<meta name="robots" content="noindex, nofollow">
+<!-- Include CSS File Here -->
+<link rel="stylesheet" href="style.css"/>
+<!-- Include CSS File Here -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<script>
+$(document).ready(function(){
+$("#login").click(function(){
+var email = $("#user-name").val();
+var password = $("#user-password").val();
+// Checking for blank fields.
+if( email =='' || password ==''){
+$('input[type="text"],input[type="password"]').css("border","2px solid red");
+$('input[type="text"],input[type="password"]').css("box-shadow","0 0 3px red");
+alert("Please fill all fields...!!!!!!");
+}else {
+$.post("login1.html",{ email1: email, password1:password},
+function(data) {
+if(data=='Invalid Email.......') {
+$('input[type="text"]').css({"border":"2px solid red","box-shadow":"0 0 3px red"});
+$('input[type="password"]').css({"border":"2px solid #00F5FF","box-shadow":"0 0 5px #00F5FF"});
+alert(data);
+}else if(data=='Email or Password is wrong...!!!!'){
+$('input[type="text"],input[type="password"]').css({"border":"2px solid red","box-shadow":"0 0 3px red"});
+alert(data);
+} else if(data=='Successfully Logged in...'){
+$("form")[0].reset();
+$('input[type="text"],input[type="password"]').css({"border":"2px solid #00F5FF","box-shadow":"0 0 5px #00F5FF"});
+alert(data);
+} else{
+alert(data);
+}
+});
+}
+});
+});
+
+
+</script>
+
+</head>
+<body>
+<div class="container">
+<div class="main">
+Hello 123
+                    <form class="form-horizontal m-t-20"  method="post">
+
+                        <div class="form-group-custom">
+                            <input type="text" id="user-name" name="user-name"   required="required"/>
+                            <label class="control-label" for="user-name">Username</label><i class="bar"></i>
+                        </div>
+
+                        <div class="form-group-custom">
+                            <input type="password" id="user-password"  name="user-password"  required="required"/>
+                            <label class="control-label" for="user-password">Password</label><i class="bar"></i>
+                        </div>
+
+                        <div class="form-group ">
+                            <div class="col-12">
+                                <div class="checkbox checkbox-primary">
+                                    <input id="checkbox-signup" type="checkbox">
+                                    <label for="checkbox-signup"> Remember me </label>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group text-center m-t-20">
+                            <div class="col-12">
+                                <button class="btn btn-purple btn-block text-uppercase waves-effect waves-light" type="submit" id="login"  name="login">
+                                    Log In
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="form-group m-t-20 m-b-0">
+                            <div class="col-12">
+                                <a href="page-recoverpw.html" class="text-dark"><i class="fa fa-lock m-r-5"></i> Forgot your password?</a>
+                            </div>
+                        </div>
+
+                        <div class="form-group m-t-40 m-b-0">
+                            <div class="col-12 text-center">
+                                <h5 class="font-18"><b>Sign in with</b></h5>
+                            </div>
+                        </div>
+
+                        <div class="form-group m-b-0 text-center">
+                            <div class="col-12">
+                                <button type="button" class="btn btn-sm btn-facebook waves-effect waves-light m-t-20">
+                                    <i class="fa fa-facebook m-r-5"></i> Facebook
+                                </button>
+
+                                <button type="button" class="btn btn-sm btn-twitter waves-effect waves-light m-t-20">
+                                    <i class="fa fa-twitter m-r-5"></i> Twitter
+                                </button>
+
+                                <button type="button" class="btn btn-sm btn-googleplus waves-effect waves-light m-t-20">
+                                    <i class="fa fa-google-plus m-r-5"></i> Google+
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+</div>
+</div>
+</body>
+</html>
